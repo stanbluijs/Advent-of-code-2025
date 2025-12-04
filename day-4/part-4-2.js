@@ -39,6 +39,7 @@ function countOnPosInRow(row, pos) {
 
 function process(matrix) {
 	const matrixResult = [];
+	let roundCount = 0;
 
 	for (const matrixIndex in matrix) {
 		// console.log('***********************', matrixIndex);
@@ -69,6 +70,7 @@ function process(matrix) {
 				// console.log(rollCount);
 				if (rollCount <= 4) {
 					rollResult.push('x');
+					roundCount++;
 					accasableRolCount++;
 				} else {
 					rollResult.push(posValue);
@@ -80,6 +82,10 @@ function process(matrix) {
 
 		// console.log('rollResult', rollResult);
 		matrixResult[m] = rollResult;
+	}
+
+	if (roundCount > 0) {
+		process(matrixResult);
 	}
 
 	return matrixResult;
